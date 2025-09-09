@@ -1,0 +1,6 @@
+@Workshop.Backend_HostAddress = http://localhost:5030
+
+GET {{Workshop.Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
