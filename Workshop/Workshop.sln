@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Backend", "Workshop.Backend\Workshop.Backend.csproj", "{F03A0071-E8A8-46D3-A655-793EBD614A54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Shared", "Workshop.Shared\Workshop.Shared.csproj", "{B69AAA87-6F02-4634-BBB1-3C3164B83084}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Frontend", "..\..\Hotel\Hotel\Hotel.Frontend\Hotel.Frontend.csproj", "{8893597E-02C6-0619-E3F0-8FDC5D1ED5D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Frontend", "..\..\Hotel\Hotel\Hotel.Frontend\Workshop.Frontend.csproj", "{8893597E-02C6-0619-E3F0-8FDC5D1ED5D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
