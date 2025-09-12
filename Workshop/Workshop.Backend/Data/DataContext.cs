@@ -14,8 +14,8 @@ public class DataContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Employee>().HasIndex(x => x.FirstName).IsUnique();
-        modelBuilder.Entity<Employee>().HasIndex(x => x.LastName).IsUnique();
+        modelBuilder.Entity<Employee>().HasIndex(x => x.FirstName);
+        modelBuilder.Entity<Employee>().HasIndex(x => x.LastName);
         modelBuilder.Entity<Employee>().Property(x => x.IsActive);
         modelBuilder.Entity<Employee>().Property(x => x.Salary).HasPrecision(18, 2);
     }

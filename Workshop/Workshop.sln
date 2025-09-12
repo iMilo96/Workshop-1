@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Backend", "Worksho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Shared", "Workshop.Shared\Workshop.Shared.csproj", "{B69AAA87-6F02-4634-BBB1-3C3164B83084}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Frontend", "..\..\Hotel\Hotel\Hotel.Frontend\Workshop.Frontend.csproj", "{8893597E-02C6-0619-E3F0-8FDC5D1ED5D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Frontend", "Workshop.Frontend\Workshop.Frontend.csproj", "{8893597E-02C6-0619-E3F0-8FDC5D1ED5D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,7 +12,7 @@ using Workshop.Backend.Data;
 namespace Workshop.Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250909040902_InitialDb")]
+    [Migration("20250912213721_InitialDb")]
     partial class InitialDb
     {
         /// <inheritdoc />
@@ -35,8 +35,8 @@ namespace Workshop.Backend.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime>("HireDate")
                         .HasColumnType("datetime2");
@@ -46,8 +46,8 @@ namespace Workshop.Backend.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<decimal>("Salary")
                         .HasPrecision(18, 2)
