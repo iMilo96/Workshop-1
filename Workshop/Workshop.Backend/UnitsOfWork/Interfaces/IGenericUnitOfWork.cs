@@ -1,9 +1,14 @@
-﻿using Workshop.Shared.Responses;
+﻿using Workshop.Shared.DTOs;
+using Workshop.Shared.Responses;
 
 namespace Workshop.Backend.UnitsOfWork.Interfaces
 {
     public interface IGenericUnitOfWork<T> where T : class
     {
+        Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination);
+
+        Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination);
+
         Task<ActionResponse<T>> GetAsync(int id);
 
         Task<ActionResponse<IEnumerable<T>>> GetAsync();
@@ -13,7 +18,5 @@ namespace Workshop.Backend.UnitsOfWork.Interfaces
         Task<ActionResponse<T>> DeleteAsync(int id);
 
         Task<ActionResponse<T>> UpdateAsync(T entity);
-
-        Task<ActionResponse<IEnumerable<T>>> SearchAsync(string term);
     }
 }

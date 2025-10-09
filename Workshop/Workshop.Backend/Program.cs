@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.Xml;
+using System.Text.Json.Serialization;
 using Workshop.Backend.Data;
 using Workshop.Backend.Repositories.Implementations;
 using Workshop.Backend.Repositories.Interfaces;
@@ -7,11 +9,17 @@ using Workshop.Backend.UnitsOfWork.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler =
+ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=LocalConnection"));
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.
+    GetConnectionString("LocalConnection"), sql => sql.CommandTimeout(180)));
+
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
+builder.Services.AddScoped<IEmployeesUnitOfWork, EmployeesUnitOfWork>();
+
+builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddTransient<SeedDb>();
@@ -41,5 +49,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Urls.Add("http://localhost:5158");
+app.Urls.Add("https://localhost:7111");
 
 app.Run();

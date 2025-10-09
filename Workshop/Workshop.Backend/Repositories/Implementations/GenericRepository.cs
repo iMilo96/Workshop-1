@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Workshop.Backend.Data;
+using Workshop.Backend.Helpers;
 using Workshop.Backend.Repositories.Interfaces;
+using Workshop.Shared.DTOs;
 using Workshop.Shared.Entities;
 using Workshop.Shared.Responses;
 
@@ -15,6 +17,30 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         _context = context;
         _entity = _context.Set<T>();
+    }
+
+    public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination)
+    {
+        var queryable = _entity.AsQueryable();
+
+        return new ActionResponse<IEnumerable<T>>
+        {
+            WasSuccess = true,
+            Result = await queryable
+                .Paginate(pagination)
+                .ToListAsync()
+        };
+    }
+
+    public virtual async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
+    {
+        var queryable = _entity.AsQueryable();
+        double count = await queryable.CountAsync();
+        return new ActionResponse<int>
+        {
+            WasSuccess = true,
+            Result = (int)count
+        };
     }
 
     public virtual async Task<ActionResponse<T>> AddAsync(T entity)
@@ -111,22 +137,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         {
             return ExceptionActionResponse(exception);
         }
-    }
-
-    public virtual async Task<ActionResponse<IEnumerable<T>>> SearchAsync(string term)
-    {
-        term = term.ToLower();
-
-        var result = await _context.Set<T>()
-            .Where(x => EF.Property<string>(x, "FirstName").ToLower().Contains(term)
-                     || EF.Property<string>(x, "LastName").ToLower().Contains(term))
-            .ToListAsync();
-
-        return new ActionResponse<IEnumerable<T>>
-        {
-            WasSuccess = true,
-            Result = result.AsEnumerable()
-        };
     }
 
     private ActionResponse<T> ExceptionActionResponse(Exception exception) => new ActionResponse<T>

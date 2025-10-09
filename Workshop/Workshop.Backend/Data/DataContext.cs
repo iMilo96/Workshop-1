@@ -19,4 +19,13 @@ public class DataContext : DbContext
         modelBuilder.Entity<Employee>().Property(x => x.IsActive);
         modelBuilder.Entity<Employee>().Property(x => x.Salary).HasPrecision(18, 2);
     }
+
+    private void DisableCascadingDelete(ModelBuilder modelBuilder)
+    {
+        var relationships = modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys());
+        foreach (var relationship in relationships)
+        {
+            relationship.DeleteBehavior = DeleteBehavior.Restrict;
+        }
+    }
 }
