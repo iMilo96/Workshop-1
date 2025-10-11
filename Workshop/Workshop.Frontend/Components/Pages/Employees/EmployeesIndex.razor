@@ -27,13 +27,21 @@ else
             <FilterComponent ApplyFilter="SetFilterValue" />
         </ToolBarContent>
         <HeaderContent>
+            <MudTh>ID</MudTh>
             <MudTh>Nombre</MudTh>
             <MudTh>Apellido</MudTh>
+            <MudTh>Salario</MudTh>
+            <MudTh>Fecha ingreso</MudTh>
+            <MudTh>Activo</MudTh>
             <MudTh style="width: 270px;">Acciones</MudTh>
         </HeaderContent>
         <RowTemplate>
-            <MudTd>@context.FirstName</MudTd>
-				<MudTd>@context.LastName</MudTd>
+            <MudTh>@context.Id</MudTh>
+                <MudTd>@context.FirstName</MudTd>
+				    <MudTd>@context.LastName</MudTd>
+                        <MudTh>@context.Salary</MudTh>
+                            <MudTh>@context.HireDateForm</MudTh>
+                                <MudTh>@context.IsActive</MudTh>
             <MudTd>
                 <MudTooltip Text="Editar">
                     <MudButton Variant="Variant.Filled"

@@ -24,10 +24,11 @@ public class EmployeesRepository : GenericRepository<Employee>, IEmployeesReposi
         if (!string.IsNullOrWhiteSpace(pagination.Filter))
         {
             var filter = pagination.Filter.ToLower().Trim();
-            var query = _context.Employees
-                .Where(e => EF.Functions.Collate(e.FirstName + " " + e.LastName, "SQL_Latin1_General_CP1_CI_AI")
-                    .ToLower()
-                    .Contains(filter));
+            queryable = queryable.Where(x =>
+                (x.FirstName + " " + x.LastName).ToLower().Contains(filter) ||
+                x.FirstName.ToLower().Contains(filter) ||
+                x.LastName.ToLower().Contains(filter)
+            );
         }
 
         var employees = await queryable

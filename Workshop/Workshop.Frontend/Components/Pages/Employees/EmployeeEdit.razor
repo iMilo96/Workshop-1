@@ -1,3 +1,26 @@
-﻿<h3>EmployeeEdit</h3>
+﻿@if (employee is null)
+{
+    <Loading />
+}
+else
+{
+    <MudDialog>
+        <DialogContent>
+            <EditForm Model="@employee" OnValidSubmit="EditAsync">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
+                <MudTextField Label="Nombre" @bind-Value="employee.FirstName" Required="true" />
+                <MudTextField Label="Apellido" @bind-Value="employee.LastName" Required="true" />
+                <MudNumericField Label="Salario" @bind-Value="employee.Salary" Required="true" />
+                <MudSelect @bind-Value="employee.IsActive" Label="Activo" Required="true">
+                <MudSelectItem Value="true">Sí</MudSelectItem>
+                <MudSelectItem Value="false">No</MudSelectItem>
+                 </MudSelect>
 
+                <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">Guardar</MudButton>
+                <MudButton Variant="Variant.Outlined" Color="Color.Secondary" OnClick="Return">Cancelar</MudButton>
+            </EditForm>
+        </DialogContent>
+    </MudDialog>
+}

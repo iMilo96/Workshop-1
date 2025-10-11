@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Workshop.Shared.Interfaces;
 
 namespace Workshop.Shared.Entities;
 
-public class Employee
+public class Employee : IEntityWithName
 {
     public int Id { get; set; }
 

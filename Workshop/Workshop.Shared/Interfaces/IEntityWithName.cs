@@ -8,5 +8,5 @@ namespace Workshop.Shared.Interfaces;
 
 public interface IEntityWithName
 {
-    public string Name { get; set; }
+    public string FirstName { get; set; }
 }
