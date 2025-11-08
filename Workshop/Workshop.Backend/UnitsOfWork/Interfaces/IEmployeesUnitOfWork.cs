@@ -1,4 +1,5 @@
-﻿using Workshop.Shared.DTOs;
+﻿using System.Diagnostics.Metrics;
+using Workshop.Shared.DTOs;
 using Workshop.Shared.Entities;
 using Workshop.Shared.Responses;
 
@@ -13,4 +14,6 @@ public interface IEmployeesUnitOfWork
     Task<ActionResponse<Employee>> GetAsync(int id);
 
     Task<ActionResponse<IEnumerable<Employee>>> GetAsync();
+
+    Task<IEnumerable<Employee>> GetComboAsync();
 }

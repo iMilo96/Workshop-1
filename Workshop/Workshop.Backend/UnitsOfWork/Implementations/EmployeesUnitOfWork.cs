@@ -1,4 +1,6 @@
-﻿using Workshop.Backend.Repositories.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
+using Workshop.Backend.Repositories.Interfaces;
 using Workshop.Backend.UnitsOfWork.Interfaces;
 using Workshop.Shared.DTOs;
 using Workshop.Shared.Entities;
@@ -26,4 +28,6 @@ public class EmployeesUnitOfWork : GenericUnitOfWork<Employee>, IEmployeesUnitOf
 
     public override async Task<ActionResponse<Employee>> GetAsync(int id) => await
         _employeesRepository.GetAsync(id);
+
+    public async Task<IEnumerable<Employee>> GetComboAsync() => await _employeesRepository.GetComboAsync();
 }

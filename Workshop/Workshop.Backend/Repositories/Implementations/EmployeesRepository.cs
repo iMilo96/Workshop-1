@@ -98,4 +98,11 @@ public class EmployeesRepository : GenericRepository<Employee>, IEmployeesReposi
             Result = employee
         };
     }
+
+    public async Task<IEnumerable<Employee>> GetComboAsync()
+    {
+        return await _context.Employees
+            .OrderBy(c => c.FirstName)
+            .ToListAsync();
+    }
 }
