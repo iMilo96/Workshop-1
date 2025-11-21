@@ -1,3 +1,47 @@
-﻿<h3>Register</h3>
+﻿@page "/Register"
+@using Workshop.Shared.Entities
 
+@if (loading)
+{
+    <Loading />
+}
+else
+{
+    <EditForm Model="userDTO"
+              OnValidSubmit="CreateUserAsync"
+              OnInvalidSubmit="InvalidForm"
+              FormName="RegisterForm">
+        <DataAnnotationsValidator />
+        <MudGrid>
 
+    <MudItem xs="12" sm="6">
+        <MudCardContent>
+            <MudTextField Label="Nombre" @bind-Value="userDTO.FirstName" For="@(() => userDTO.FirstName)" />
+            <MudTextField Label="Apellido" @bind-Value="userDTO.LastName" For="@(() => userDTO.LastName)" />
+            <MudTextField Label="Documento" @bind-Value="userDTO.Document" For="@(() => userDTO.Document)" />
+            <MudTextField Label="Telefono" @bind-Value="userDTO.PhoneNumber" For="@(() => userDTO.PhoneNumber)" InputType="InputType.Telephone" />
+            <MudTextField Label="Email" @bind-Value="userDTO.Email" For="@(() => userDTO.Email)" InputType="InputType.Email" />
+            <MudTextField Label="Dirección" @bind-Value="userDTO.Address" For="@(() => userDTO.Address)" />
+            <MudTextField Label="Contraseña" @bind-Value="userDTO.Password" For="@(() => userDTO.Password)" InputType="InputType.Password" />
+            <MudTextField Label="Confirmar Contraseña" @bind-Value="userDTO.PasswordConfirm" For="@(() => userDTO.PasswordConfirm)" InputType="InputType.Password" />
+        </MudCardContent>
+    </MudItem>
+
+    <MudItem xs="12" sm="6">
+        <InputImg Label="Foto" ImageSelected="ImageSelected" ImageURL="@imageUrl" />
+    </MudItem>
+
+    <MudItem xs="12" class="d-flex justify-center mt-2">
+        <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.ArrowBack" Color="Color.Info" OnClick="ReturnAction" Class="ms-2 me-2 mb-2">
+            Regresar
+        </MudButton>
+
+        <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.Check" Color="Color.Primary" ButtonType="ButtonType.Submit" Class="mb-2">
+            Guardar
+        </MudButton>
+    </MudItem>
+
+</MudGrid>
+
+    </EditForm>
+}

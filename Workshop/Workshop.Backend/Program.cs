@@ -8,6 +8,7 @@ using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Text.Json.Serialization;
 using Workshop.Backend.Data;
+using Workshop.Backend.Helpers;
 using Workshop.Backend.Repositories.Implementations;
 using Workshop.Backend.Repositories.Interfaces;
 using Workshop.Backend.UnitsOfWork.Implementations;
@@ -26,6 +27,7 @@ builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configura
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped<IEmployeesUnitOfWork, EmployeesUnitOfWork>();
 builder.Services.AddScoped<IUsersUnitOfWork, UsersUnitOfWork>();
+builder.Services.AddScoped<IFileStorage, FileStorage>();
 
 builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
