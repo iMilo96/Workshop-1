@@ -14,6 +14,23 @@ public class UsersRepository : IUsersRepository
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly SignInManager<User> _signInManager;
 
+    public async Task<User> GetUserAsync(Guid userId)
+    {
+        var user = await _context.Users
+            .FirstOrDefaultAsync(x => x.Id == userId.ToString());
+        return user!;
+    }
+
+    public async Task<IdentityResult> ChangePasswordAsync(User user, string currentPassword, string newPassword)
+    {
+        return await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+    }
+
+    public async Task<IdentityResult> UpdateUserAsync(User user)
+    {
+        return await _userManager.UpdateAsync(user);
+    }
+
     public UsersRepository(DataContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, SignInManager<User> signInManager)
     {
         _context = context;
